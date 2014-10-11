@@ -43,6 +43,6 @@ void bubbleSort(int a[])
 
 int getMedian(int a[])
 {
-    int middleIndex = (SIZE - 1) / 2;
+    int middleIndex = SIZE / 2;
     return a[middleIndex];
 }
