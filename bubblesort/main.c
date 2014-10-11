@@ -31,7 +31,7 @@ int main()
 void bubbleSort(int a[])
 {
     int i, pass, hold;
-    for(pass=0; pass <= SIZE-1; pass++){
+    for(pass=1; pass <= SIZE-1; pass++){
         for (i=0; i<=SIZE-2; i++) {
             if(a[i]> a[i+1]){
                 hold = a[i];
