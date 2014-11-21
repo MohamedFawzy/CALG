@@ -144,6 +144,21 @@ int QueueSearch(struct CircularQueue *qptr, int searchKey){
     return position;
 }
 
+void QueueCopyReverse(struct CircularQueue *qptr, struct CircularQueue *qptr2){
+    int r,x;
+    do{
+        x = qptr->items[qptr->rear];
+        enqueue(qptr2, x);
+        if (qptr->rear==0) {
+            qptr->rear=CRICULARQUEUESIZE-1;
+        }else{
+            qptr->rear--;
+        }
+    }while(qptr->rear != qptr->front);
+    
+    qptr->rear=r;
+}
+
 void menu(){
     printf("Press 1 to enqueue\n");
     printf("Press 2 to dequeue\n");
