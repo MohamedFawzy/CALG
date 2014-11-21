@@ -19,7 +19,7 @@ void enqueue(struct CircularQueue *qptr, int x);
 int dequeue(struct CircularQueue *qptr);
 int empty(struct CircularQueue *qptr);
 int full(struct CircularQueue *qptr);
-
+int QueueSearch(struct CircularQueue *qptr, int x);
 void display(struct CircularQueue *qptr);
 void clearQ(struct CircularQueue *qptr);
 void menu();
@@ -48,12 +48,17 @@ int main(int argc, const char * argv[]) {
             case 4:
                 clearQ(&cq);
                 break;
-                
+            case 5:
+                printf("Enter element you need to search for \n");
+                scanf("%d",&x);
+                int pos = QueueSearch(&cq, x);
+                printf("The key element %d found at index %d\n", x, pos);
+                break;
             default:
                 printf("\nWrong entry, Try again !\n");
                 break;
         }
-    }while (choice != 5);
+    }while (choice != 6);
     return 0;
 }
 
@@ -119,12 +124,33 @@ void display(struct CircularQueue *qptr){
     }
 }
 
+int QueueSearch(struct CircularQueue *qptr, int searchKey){
+    int position=-1,f;
+    f=qptr->front;
+    while (qptr->front != qptr->rear) {
+        if (qptr->front == CRICULARQUEUESIZE-1) {
+            qptr->front=0;
+        }else{
+            qptr->front++;
+        }
+        if (qptr->items[qptr->front]== searchKey) {
+            position = qptr->front;
+            qptr->front=f;
+            return position;
+        }
+    }
+    
+    qptr->front=f;
+    return position;
+}
+
 void menu(){
     printf("Press 1 to enqueue\n");
     printf("Press 2 to dequeue\n");
     printf("Press 3 to display\n");
     printf("Press 4 to clear\n");
-    printf("Press 5 to quite\n");
+    printf("Press 5 to search\n");
+    printf("press 6 to quit\n");
 
 }
 
